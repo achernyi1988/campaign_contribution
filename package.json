@@ -1,0 +1,26 @@
+{
+  "name": "campaign_contribution",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/achernyi1988/campaign_contribution.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/achernyi1988/campaign_contribution/issues"
+  },
+  "homepage": "https://github.com/achernyi1988/campaign_contribution#readme",
+  "dependencies": {
+    "fs-extra": "^7.0.1",
+    "ganache-cli": "^6.2.3",
+    "mocha": "^5.2.0",
+    "solc": "^0.5.1",
+    "web3": "^1.0.0-beta.35"
+  }
+}
