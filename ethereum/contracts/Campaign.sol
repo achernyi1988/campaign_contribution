@@ -38,9 +38,12 @@ contract Campaign {
 
     function contribute() public payable {
         require(msg.value >= minimumContribution);
-        appoversMap[msg.sender] = true;
 
-        approversCount++;
+        if(!appoversMap[msg.sender])
+        {
+            appoversMap[msg.sender] = true;
+            approversCount++;
+        }
     }
 
     function createRequest(string description, uint value, address recipient)
@@ -88,7 +91,7 @@ contract Campaign {
         );
     }
 
-    function getRquestCount() public view returns(uint){
+    function getRequestCount() public view returns(uint){
         return requestArr.length;
     }
 
