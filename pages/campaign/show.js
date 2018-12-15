@@ -75,7 +75,12 @@ class CampaignShow extends Component{
                         </Grid.Column>
                         <Grid.Column width={6}>
                             <ContributeForm address={ this.props.address}/>
-                        </Grid.Column>
+                            <Link route={`/campaign/${this.props.address}/view/contribution`}>
+                                <a>
+                                    <Button color={"green"} style={{marginTop:"50px"}}>View Contributions</Button>
+                                </a>
+                            </Link>
+                    </Grid.Column>
                     </Grid.Row>
 
                     <Grid.Row>

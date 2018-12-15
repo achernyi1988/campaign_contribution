@@ -12,6 +12,7 @@ contract CampaignFactory{
     function getDeployedCampaign() public view returns(address[]){
         return deployedCampaign;
     }
+
 }
 
 contract Campaign {
@@ -24,11 +25,14 @@ contract Campaign {
         uint approvalsCounter;
         mapping (address => bool) votes;
     }
+
     address public manager;
     uint public minimumContribution;
     mapping (address => bool) public appoversMap;
     uint public approversCount;
     RequestContex [] public requestArr;
+    mapping(address => uint) public contributorAmount;
+    address [] public contributorAddress;
 
     function Campaign (uint minimum,  address creator) public {
         manager = creator;
@@ -39,8 +43,11 @@ contract Campaign {
     function contribute() public payable {
         require(msg.value >= minimumContribution);
 
+        contributorAmount[msg.sender] += msg.value;
+
         if(!appoversMap[msg.sender])
         {
+            contributorAddress.push(msg.sender);
             appoversMap[msg.sender] = true;
             approversCount++;
         }
@@ -80,20 +87,25 @@ contract Campaign {
     }
 
     function getSummary() public view returns (
-                  uint,uint,uint,uint,address )
+        uint,uint,uint,uint,address )
     {
         return (
-            minimumContribution,
-            this.balance,
-            requestArr.length,
-            approversCount,
-            manager
+        minimumContribution,
+        this.balance,
+        requestArr.length,
+        approversCount,
+        manager
         );
     }
 
     function getRequestCount() public view returns(uint){
         return requestArr.length;
     }
+
+    function getContributorAddressCount() public view returns(uint){
+        return contributorAddress.length;
+    }
+
 
     modifier restrictedManager () {
         require(msg.sender == manager);
