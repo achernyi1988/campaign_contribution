@@ -1,4 +1,7 @@
 import web3 from "./web3";
+
+
+
 import campaignFactory from "../ethereum/build/CampaignFactory";
 
  const instance = new web3.eth.Contract(
