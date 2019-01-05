@@ -1,6 +1,7 @@
 const HWWalletProvider = require("truffle-hdwallet-provider");
 const Web3 = require("web3");
 const compiledFactory = require("./build/CampaignFactory");
+const fs = require('fs-extra');
 
 const provider = new HWWalletProvider(
     'velvet weasel owner rookie agree fit cushion like burden dance tragic lock',
@@ -20,5 +21,8 @@ const deploy = async () => {
         .send({gas: '1000000', from: accounts[0]});
 
     console.log("Contract deployed at", result.options.address);
+
+
+    fs.appendFileSync("ethereum/CONTRACT_ADDRESS", `\r\n${result.options.address}`);
 };
 deploy();

@@ -16,6 +16,7 @@ class RequestNew extends Component{
     };
 
     static async getInitialProps(props){
+        console.log("getInitialProps props.query.address ", props.query.address)
         return {address: props.query.address};
     }
 
